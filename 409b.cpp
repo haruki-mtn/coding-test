@@ -5,22 +5,20 @@ int main() {
     int n;
     cin >> n;
     vector<int> a(n);
-    for (int i = 0; i < n; i++) {
-        cin >> a.at(i);
-    }
-    sort(a.begin(), a.end());
+    for (auto &x : a) cin >> x;
+
     int ans = 0;
-    for (int i = 0; i <= a.at(n - 1); i++) {
+    for (int x = n; x >= 0; x--) {
         int cnt = 0;
-        for (int j = 0; j < n; j++) {
-            if (i <= a.at(j)) {
-                cnt++;
-            }
-            if (i <= cnt) {
-                ans = i;
-            }
+        for (auto a : a) {
+            if (a >= x) cnt++;
+        }
+        if (cnt >= x) {
+            ans = x;
+            break;
         }
     }
+    
     cout << ans << '\n';
     return 0;
 }
